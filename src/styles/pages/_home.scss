@@ -2,10 +2,17 @@
 
 .home {
     background-color: var(--color-grey);
+    height: 100vh;
+    @include mixins.flex(flex, center, center, none);
 }
 
-.headlines {
-    @include mixins.flex-center();
-    flex-direction: column;
-    margin-top: 300px;
+.button-container {
+    @include mixins.flex(flex, center, none, none);
+    margin-top: 80px;
+}
+
+.controller-left {
+    position: absolute;
+    left: 0;
+    bottom: 5px;
 }

@@ -1,8 +1,10 @@
 @use './base/base';
 @use './base/fonts';
+@use './base/spacing';
 @use './base/typography';
 
 @use './pages/home';
+@use './pages/settings';
 
 @use './components/button';
 
