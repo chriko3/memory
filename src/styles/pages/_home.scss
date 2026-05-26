@@ -1,0 +1,11 @@
+@use '../abstracts/mixins';
+
+.home {
+    background-color: var(--color-grey);
+}
+
+.headlines {
+    @include mixins.flex-center();
+    flex-direction: column;
+    margin-top: 300px;
+}

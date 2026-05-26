@@ -1,3 +1,9 @@
-body{
-    background-color: red;
-}
+@use './base/base';
+@use './base/fonts';
+@use './base/typography';
+
+@use './pages/home';
+
+@use './components/button';
+
+@use './abstracts/variables';
