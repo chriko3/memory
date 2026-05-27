@@ -1,0 +1,53 @@
+@use '../abstracts/mixins';
+
+.game-container {
+    @include mixins.flex(flex, center, center, column);
+
+}
+
+.game-info-container {
+    @include mixins.flex(flex, space-between, center, none);
+
+    background-color: red;
+    width: 90%;
+    height: 62px;
+
+    margin: 50px;
+    background-color: red;
+}
+
+.game-points {
+    width: 280px;
+    background-color: aquamarine;
+    height: 100%;
+    @include mixins.flex(flex, center, center, column);
+
+}
+
+.game-current-player {
+    @include mixins.flex(flex, center, center, none);
+
+
+}
+
+.game-exit {
+    @include mixins.flex(flex, center, center, none);
+    width: 280px;
+    height: 100%;
+    background-color: blanchedalmond;
+
+    >button {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.game {
+    width: auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    gap: 20px;
+    justify-content: center;
+    margin: 50px;
+}

@@ -8,11 +8,39 @@
     <title>Memory</title>
 </head>
 
-<body>
+<body onload="gameInit()">
+    <div class="game-container">
+        <div class="game-info-container">
+            <div class="game-points">
+            </div>
 
+            <div class="game-current-player">
+                <p>Current player: </p>
+                <img src="" alt="">
+            </div>
+
+            <div class="game-exit">
+                <button>
+                    <img src="" alt="">
+                    <span>Exit Game</span>
+                </button>
+            </div>
+
+        </div>
+
+
+
+        <div class="game" id="gameCanvas">
+
+
+        </div>
+
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/settings.ts"></script>
+    <script type="module" src="/src/game.ts"></script>
+    <script type="module" src="/src/template.ts"></script>
 </body>
 
 </html>

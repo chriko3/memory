@@ -1,7 +1,7 @@
 interface GameSettings {
-    theme: 1 | 2 | undefined;
-    player: "blue" | "orange" | undefined;
-    size: 16 | 24 | 36 | undefined;
+    theme: number | undefined;
+    player: string | undefined;
+    size: number | undefined;
 }
 
 let settings: GameSettings = {
@@ -87,6 +87,16 @@ function startGame() {
         settings.player !== undefined &&
         settings.size !== undefined
     ) {
+        sessionStorage.setItem("theme", String(settings.theme));
+        sessionStorage.setItem("player", String(settings.player));
+        sessionStorage.setItem("size", String(settings.size));
         window.location.href = "game.html";
     }
 }
+(window as any).startGame = startGame;
+
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+        card.classList.toggle("flipped");
+    });
+});
