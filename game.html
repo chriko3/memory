@@ -24,7 +24,7 @@
             </div>
 
             <div class="game-exit">
-                <button onclick="exitGame()">
+                <button onclick="togglePopUp()">
                     <img src="./public/assets/img/exit.svg" alt="">
                     <span>Exit Game</span>
                 </button>
@@ -35,15 +35,15 @@
         </div>
     </div>
 
-    <!-- <div class="overlay">
+    <div class="overlay" id="exitPopUp" style="display: none;">
         <div class="exit-popup">
-            <p>Are you sure you want to quit the game?</p>
+            <p>Are you sure you want to quit <br> the game?</p>
             <div>
-                <button></button>
-                <button></button>
+                <button onclick="togglePopUp()">Back to game</button>
+                <button onclick="exitGame()">Exit game</button>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/settings.ts"></script>
