@@ -8,26 +8,42 @@
 .game-info-container {
     @include mixins.flex(flex, space-between, center, none);
 
-    background-color: red;
     width: 90%;
     height: 62px;
-
     margin: 50px;
-    background-color: red;
 }
 
 .game-points {
+    @include mixins.flex(flex, start, center, row);
+
     width: 280px;
-    background-color: aquamarine;
     height: 100%;
-    @include mixins.flex(flex, center, center, column);
+
+    gap:15px;
+
+    >img{
+        width: 25px;
+        height: 25px
+    }
+
+    >p{
+        font-size: 24px;
+    }
 
 }
 
 .game-current-player {
     @include mixins.flex(flex, center, center, none);
+    gap: 20px;
 
+    >p {
+        font-size: 32px;
+    }
 
+    >img {
+        width: 40px;
+        height: 40px
+    }
 }
 
 .game-exit {
@@ -39,6 +55,14 @@
     >button {
         height: 100%;
         width: 100%;
+        display: flex;
+        justify-content: space-around;
+
+        >span {
+            font-size: 24px;
+        }
+
+        >img {}
     }
 }
 

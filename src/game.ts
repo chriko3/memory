@@ -3,27 +3,46 @@ let settingstheme = sessionStorage.getItem("theme");
 let settingsplayer = sessionStorage.getItem("player");
 let settingssize = sessionStorage.getItem("size");
 
+let flippedCards = 0;
+
 let gameSettings: GameSettings = {
     theme: Number(settingstheme),
     player: String(settingsplayer),
     size: Number(settingssize)
 };
 
-function gameInit(){
+function gameInit() {
     renderCards();
 }
 (window as any).gameInit = gameInit;
 
+function renderCards() {
+    const gameCanvas = document.getElementById("gameCanvas");
 
-function renderCards(){
-    let gameCanvas = document.getElementById('gameCanvas');
-    for (let index = 0; index < gameSettings.size!; index++) {       
-        gameCanvas!.innerHTML += returnCardTemplate();
+    for (let i = 0; i < gameSettings.size!; i++) {
+        const cardValue = Math.floor(i / 2);
+        gameCanvas!.innerHTML += returnCardTemplate(cardValue);
     }
+
+    attachListeners();
 }
 
-document.querySelectorAll(".card").forEach(card => {
-    card.addEventListener("click", () => {
-        card.classList.toggle("flipped");        
+function attachListeners() {
+    document.querySelectorAll(".card").forEach(card => {
+        card.addEventListener("click", () => {
+
+
+
+            if (card.classList.contains("flipped")) return;
+            if (flippedCards <= 1) {
+                console.log(card.getAttribute("data-pair"));
+            }
+            else {
+
+            }
+
+            card.classList.add("flipped");
+            flippedCards++;
+        });
     });
-});
+}
