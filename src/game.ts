@@ -29,7 +29,7 @@ function setBoard() {
     }
     else if (gameSettings.size == 24) {
         setGrid(24);
-    } 
+    }
     else if (gameSettings.size == 36) {
         setGrid(36);
     }
@@ -121,14 +121,21 @@ function checkWin() {
     if (allMatched) {
         if (playerPoints[0] > playerPoints[1]) {
             console.log('p1 won');
+            showEndScreen(0);
         }
         else if (playerPoints[0] === playerPoints[1]) {
             console.log("draw");
+            showEndScreen(2);
         }
         else {
             console.log('p2 won');
+            showEndScreen(2);
         }
     }
+}
+
+function showEndScreen(winState: number) {
+
 }
 
 function setGrid(cards: number) {
