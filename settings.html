@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html translate="no">
     <title>Memory Settings</title>
 </head>
 
@@ -12,75 +13,89 @@
     <div class="settings-container">
         <div class="settings-container-headline">
             <p class="m-0">Settings</p>
-            <img src="./public/img/Line.svg" alt="Line Icon">
+            <img src="./public/assets/img/Line.svg" alt="Line Icon">
         </div>
         <div class="settings-game-container">
             <div class="settings-left">
                 <div class="settings-box">
                     <div class="settings-box-headline">
-                        <img src="./public/img/palette.svg" alt="">
+                        <img src="./public/assets/img/palette.svg" alt="">
                         <p>Game themes</p>
                     </div>
                     <div class="ml-50">
-                        <div class="settings-circle-text">
+                        <div class="settings-circle-text" data-theme="1">
                             <div>
-                                <img src="./public/img/circle.svg" alt="">
+                                <img class="default" src="./public/assets/img/circle.svg" alt="">
+                                <img class="hover" src="./public/assets/img/circle_selected.svg" alt="">
                             </div>
-                            <p>Theme 1</p>
+                            <p>Code vibes theme</p>
+                            <img class="line" src="./public/assets/img/line_block.svg" alt="">
                         </div>
-                        <div class="settings-circle-text">
+                        <div class="settings-circle-text"  data-theme="2">
                             <div>
-                                <img src="./public/img/circle.svg" alt="">
+                                <img class="default" src="./public/assets/img/circle.svg" alt="">
+                                <img class="hover" src="./public/assets/img/circle_selected.svg" alt="">
                             </div>
-                            <p>Theme 2</p>
+                            <p>Gaming theme</p>
+                            <img class="line" src="./public/assets/img/line_block.svg" alt="">
                         </div>
                     </div>
                 </div>
 
                 <div class="settings-box">
                     <div class="settings-box-headline">
-                        <img src="./public/img/chess_pawn.svg" alt="">
+                        <img src="./public/assets/img/chess_pawn.svg" alt="">
                         <p>Choose player</p>
                     </div>
                     <div class="ml-50">
-                        <div class="settings-circle-text">
+                        <div class="settings-circle-text" data-player="blue">
                             <div>
-                                <img src="./public/img/circle.svg" alt="">
+                                <img class="default" src="./public/assets/img/circle.svg" alt="">
+                                <img class="hover" src="./public/assets/img/circle_selected.svg" alt="">
                             </div>
                             <p>Blue</p>
+                            <img src="./public/assets/img/line_block.svg" alt="">
                         </div>
-                        <div class="settings-circle-text">
+                        <div class="settings-circle-text" data-player="orange">
                             <div>
-                                <img src="./public/img/circle.svg" alt="">
+                                <img class="default" src="./public/assets/img/circle.svg" alt="">
+                                <img class="hover" src="./public/assets/img/circle_selected.svg" alt="">
                             </div>
                             <p>Orange</p>
+                            <img src="./public/assets/img/line_block.svg" alt="">
                         </div>
                     </div>
                 </div>
 
                 <div class="settings-box">
                     <div class="settings-box-headline">
-                        <img src="./public/img/board.svg" alt="">
+                        <img src="./public/assets/img/board.svg" alt="">
                         <p>Board size</p>
                     </div>
                     <div class="ml-50">
-                        <div class="settings-circle-text">
+                        <div class="settings-circle-text" data-size="16">
                             <div>
-                                <img src="./public/img/circle.svg" alt="">
+                                <img class="default" src="./public/assets/img/circle.svg" alt="">
+                                <img class="hover" src="./public/assets/img/circle_selected.svg" alt="">
                             </div>
                             <p>16 cards</p>
+                            <img src="./public/assets/img/line_block.svg" alt="">
                         </div>
-                        <div class="settings-circle-text">
+                        <div class="settings-circle-text" data-size="24">
                             <div>
-                                <img src="./public/img/circle.svg" alt="">
+                                <img class="default" src="./public/assets/img/circle.svg" alt="">
+                                <img class="hover" src="./public/assets/img/circle_selected.svg" alt="">
                             </div>
                             <p>24 cards</p>
+                            <img src="./public/assets/img/line_block.svg" alt="">
                         </div>
-                        <div class="settings-circle-text">
+                        <div class="settings-circle-text" data-size="36">
                             <div>
-                                <img src="./public/img/circle.svg" alt="">
+                                <img class="default" src="./public/assets/img/circle.svg" alt="">
+                                <img class="hover" src="./public/assets/img/circle_selected.svg" alt="">
                             </div>
                             <p>36 cards</p>
+                            <img src="./public/assets/img/line_block.svg" alt="">
                         </div>
                     </div>
                 </div>
@@ -88,16 +103,16 @@
             </div>
 
             <div class="settings-right">
-                <img src="./public/img/CodeVibe.svg" alt="">
+                <img src="./public/assets/img/CodeVibe.svg" alt="">
 
                 <div class="settings-right-rectangle">
-                    <p>Game theme</p>
-                    <img src="./public/img/Line left.svg" alt="">
-                    <p>Player</p>
-                    <img src="./public/img/Line left.svg" alt="">
-                    <p>Board size</p>
-                    <button>
-                        <img src="./public/img/play.svg" alt="">
+                    <p id="gameThemeText">Game theme</p>
+                    <img src="./public/assets/img/Line left.svg" alt="">
+                    <p id="gamePlayerText">Player</p>
+                    <img src="./public/assets/img/Line left.svg" alt="">
+                    <p id="gameBoardSizeText">Board size</p>
+                    <button onclick="startGame()">
+                        <img src="./public/assets/img/play.svg" alt="">
                         <span>Start</span>
                     </button>
                 </div>
@@ -107,6 +122,7 @@
     </div>
 
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/settings.ts"></script>
 </body>
 
 </html>

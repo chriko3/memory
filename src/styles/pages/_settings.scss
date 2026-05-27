@@ -42,14 +42,55 @@
     display: flex;
     gap: 10px;
     cursor: pointer;
+    align-items: start;
 
-    >p {
+    .hover {
+        display: none;
+    }
+
+    > p {
         margin-top: 0px;
     }
 
+    > img {
+        width: 60px;
+        margin-left: 10px;
+        display: none;
+    }
+
     &:hover {
-        >p {
+        > p {
             font-weight: 1000;
+        }
+
+        .default {
+            display: none;
+        }
+
+        .hover {
+            display: block;
+        }
+
+        > img:last-child {
+            display: block;
+        }
+    }
+
+    &.active {
+        > p {
+            font-weight: 1000;
+        }
+
+        .default {
+            display: none;
+        }
+
+        .hover {
+            display: block;
+        }
+
+        > img:last-child {
+            display: block;
         }
     }
 }
@@ -85,5 +126,17 @@
     >button {
         width: 126px;
         height: 60px;
+
+        >img {
+            width: 20px;
+            height: 16px;
+        }
+
+        >span {
+            font-size: 20px;
+            font-weight: 1000;
+            width: auto;
+            padding-right: 10px;
+        }
     }
 }
