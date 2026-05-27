@@ -13,9 +13,9 @@
         <div class="game-info-container">
             <div class="game-points">
                 <img src="" alt="">
-                <p>XXX</p>
+                <p id="pointsPlayer1">0</p>
                 <img src="" alt="">
-                <p>XXX</p>
+                <p id="pointsPlayer2">0</p>
             </div>
 
             <div class="game-current-player">
@@ -24,22 +24,26 @@
             </div>
 
             <div class="game-exit">
-                <button>
+                <button onclick="exitGame()">
                     <img src="./public/assets/img/exit.svg" alt="">
                     <span>Exit Game</span>
                 </button>
             </div>
-
         </div>
-
-
 
         <div class="game" id="gameCanvas">
-
-
         </div>
-
     </div>
+
+    <!-- <div class="overlay">
+        <div class="exit-popup">
+            <p>Are you sure you want to quit the game?</p>
+            <div>
+                <button></button>
+                <button></button>
+            </div>
+        </div>
+    </div> -->
 
     <script type="module" src="/src/main.ts"></script>
     <script type="module" src="/src/settings.ts"></script>
