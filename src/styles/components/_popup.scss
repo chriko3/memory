@@ -17,7 +17,7 @@
     &.filled {
         background-color: rgb(25, 150, 44);
 
-        
+
     }
 }
 
@@ -27,9 +27,15 @@
     @include mixins.flex(flex, space-between, center, column);
     padding: 20px;
     text-align: center;
+    background-color: var(--background-color-pop-up);
+
+    transform: translateY(-100vh);
+    animation: flyIn 0.3s ease-out forwards;
+    border-radius: var(--border-radius-popup);
 
     >p {
-        font-size: 32px;
+        font-size: var(--font-size-32);
+        color: var(--font-color-popup);
         margin: 0px;
         margin-top: 10px;
     }
@@ -39,11 +45,39 @@
         gap: 20px;
 
         >button {
+            @include mixins.flex(flex, center, center, row);
             width: 180px;
             height: 57px;
-            @include mixins.flex(flex, center, center, row);
             font-size: 20px;
+            margin-bottom: 20px;
+            background-color: var(--background-color-button);
+            border-color: var(--game-button-border-color);
+            border-style: var(--game-button-border-style);
+            border-width: var(--game-button-border-width);
+            border-radius: var(--game-button-border-radius);
+            color: var(--text-button);
+            font-family: var(--font-main);
         }
 
+        >button:last-child {
+            background-color: var(--game-button-color);
+            border-color: var(--game-button-border-color);
+            border-style: var(--game-button-border-style);
+            border-width: var(--game-button-border-width);
+            border-radius: var(--game-button-border-radius);
+            color: var(--text-button2);
+        }
+    }
+}
+
+@keyframes flyIn {
+    from {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }

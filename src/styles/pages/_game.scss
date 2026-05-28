@@ -11,22 +11,32 @@
     width: 90%;
     height: 62px;
     margin: 50px;
+
+    background-color: var(--background-color-banner);
+    border-radius: var(--border-radius-banner);
+    padding: 15px; 
 }
 
 .game-points {
-    @include mixins.flex(flex, start, center, row);
+    @include mixins.flex(flex, space-around, center, row);
 
     width: 280px;
     height: 100%;
 
-    gap:15px;
+    gap: 15px;
+    background-color: var(--game-points-bg);
+    border-color: var(--game-button-border-color);
 
-    >img{
+    border-style: var(--game-button-border-style);
+    border-width: var(--game-button-border-width);
+    border-radius: var(--game-button-border-radius);
+
+    >img {
         width: 25px;
         height: 25px
     }
 
-    >p{
+    >p {
         font-size: 24px;
     }
 
@@ -38,7 +48,7 @@
 
     >p {
         font-size: 32px;
-        color: var(--p-white);
+        color: var(--text-color);
     }
 
     >img {
@@ -51,15 +61,20 @@
     @include mixins.flex(flex, center, center, none);
     width: 280px;
     height: 100%;
-    background-color: blanchedalmond;
 
     >button {
         height: 100%;
         width: 100%;
         display: flex;
         justify-content: space-around;
+        background-color: var(--game-button-color);
+        border-color: var(--game-button-border-color);
+        border-style: var(--game-button-border-style);
+        border-width: var(--game-button-border-width);
+        border-radius: var(--game-button-border-radius);
 
         >span {
+            color: var(--text-color);
             font-size: 24px;
         }
     }
@@ -73,4 +88,3 @@
     justify-content: center;
     margin: 50px;
 }
-

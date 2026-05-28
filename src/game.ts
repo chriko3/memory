@@ -4,6 +4,8 @@ let settingstheme = sessionStorage.getItem("theme");
 let settingsplayer = sessionStorage.getItem("player");
 let settingssize = sessionStorage.getItem("size");
 
+let body = document.getElementById("body");
+
 const game = document.querySelector(".game") as HTMLElement;
 game.style.gridTemplateColumns = "repeat(4, 120px)";
 
@@ -18,12 +20,21 @@ let gameSettings: GameSettings = {
 };
 
 function gameInit() {
-    console.log(gameSettings.player);
+    if (gameSettings.theme == 1) {
+        setThemeCodeVibe();
+    }
+    else {
+        body!.classList.add("theme-food");
+    }
 
     setBoard();
     loadCardTheme();
 }
 (window as any).gameInit = gameInit;
+
+function setThemeCodeVibe() {
+    body!.classList.add("theme-codevibe");
+}
 
 function setBoard() {
     if (gameSettings.size == 16) {

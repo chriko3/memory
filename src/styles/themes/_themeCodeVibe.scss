@@ -1,6 +1,24 @@
 .theme-codevibe {
     --background-color: rgba(48, 49, 49, 1);
-    --p-white: rgba(243, 243, 243, 1);
-    --font-red-rose: ('RedRose');
+    --background-color-pop-up: rgba(243, 243, 243, 1);
+    --background-color-button: rgba(102, 207, 188, 1);
+    --background-color-banner: rgba(60, 60, 60, 1);
+
+    --text-color: rgba(243, 243, 243, 1);
+
+    --text-button: rgba(243, 243, 243, 1);
+    --text-button2: rgba(102, 207, 188, 1);
+
     --font-main: "RedRose";
+    --font-size-32: 32px;
+
+    --game-points-bg: rgba(134, 233, 214, 0.2);
+
+    --game-button-color: rgba(134, 233, 214, 0.2);
+    --game-button-border-color: rgba(77, 213, 188, 1);
+    --game-button-border-style: solid;
+    --game-button-border-width: 1px;
+    --game-button-border-radius: 0px;
+
+
 }

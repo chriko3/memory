@@ -8,7 +8,7 @@
     <title>Memory</title>
 </head>
 
-<body onload="gameInit()" class="theme-codevibe">
+<body onload="gameInit()" id="body">
     <div class="game-container">
         <div class="game-info-container">
             <div class="game-points">
@@ -25,7 +25,7 @@
 
             <div class="game-exit">
                 <button onclick="togglePopUp()">
-                    <img src="./public/assets/img/exit.svg" alt="">
+                    <img id="exitIcon" src="./public/assets/img/exit.svg" alt="">
                     <span>Exit Game</span>
                 </button>
             </div>
