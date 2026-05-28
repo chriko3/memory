@@ -42,14 +42,19 @@ document.querySelectorAll("[data-size]").forEach(el => {
 
 function updateUIGameTheme() {
     let gameThemeText = document.getElementById!('gameThemeText');
+    let themePreview = document.getElementById!('themePreview') as HTMLImageElement;
 
     if (settings.theme == undefined) {
         gameThemeText!.innerText = "Game theme";
+        themePreview!.src = "../public/assets/img/empty.png";
     }
     else if (settings.theme == 1) {
         gameThemeText!.innerText = "Code Vibes theme";
+        themePreview!.src = "../public/assets/img/CodeVibe.svg";
     } else if (settings.theme == 2) {
-        gameThemeText!.innerText = "Gaming theme";
+        gameThemeText!.innerText = "Food theme";
+        themePreview!.src = "../public/assets/img/Food.svg";
+
     }
 }
 

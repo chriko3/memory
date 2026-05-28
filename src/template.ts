@@ -1,12 +1,12 @@
-function returnCardTemplate(cardValue:any) {
+function returnCardTemplate(cardValue: number, img: string, theme: string[]) {
     return `
         <div class="card" data-pair="${cardValue}">
             <div class="card-inner">
                 <div class="card-front">
-                    <img src="" alt="">
+                    <img src="${theme[0]}"/> 
                 </div>
                 <div class="card-back">
-                    <img src="" alt="">
+                    <img src="${img}" />
                 </div>
             </div>
         </div>

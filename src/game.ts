@@ -1,4 +1,5 @@
-
+import { codeVibeTheme } from "./cards";
+import { foodTheme } from "./cards";
 let settingstheme = sessionStorage.getItem("theme");
 let settingsplayer = sessionStorage.getItem("player");
 let settingssize = sessionStorage.getItem("size");
@@ -6,7 +7,6 @@ let settingssize = sessionStorage.getItem("size");
 const game = document.querySelector(".game") as HTMLElement;
 game.style.gridTemplateColumns = "repeat(4, 120px)";
 
-let flippedCardsAround = 0;
 let flippedCards: HTMLElement[] = [];
 
 let playerPoints: number[] = [0, 0];
@@ -21,7 +21,7 @@ function gameInit() {
     console.log(gameSettings.player);
 
     setBoard();
-    renderCards();
+    loadCardTheme();
 }
 (window as any).gameInit = gameInit;
 
@@ -37,7 +37,7 @@ function setBoard() {
     }
 }
 
-function renderCards() {
+function renderCards(theme: string[]) {
     const gameCanvas = document.getElementById("gameCanvas");
     if (!gameCanvas) return;
     const cards: number[] = [];
@@ -47,13 +47,22 @@ function renderCards() {
     }
     for (let i = cards.length - 1; i > 0; i--) {
         const randomIndex = Math.floor(Math.random() * (i + 1));
-
         [cards[i], cards[randomIndex]] = [cards[randomIndex], cards[i]];
     }
     cards.forEach(cardValue => {
-        gameCanvas.innerHTML += returnCardTemplate(cardValue);
+        gameCanvas.innerHTML += returnCardTemplate(cardValue, theme[cardValue + 1], theme);
     });
     attachListeners();
+}
+
+function loadCardTheme() {
+    if (gameSettings.theme == 1) {
+        renderCards(codeVibeTheme);
+    }
+    else if (gameSettings.theme == 2) {
+        renderCards(foodTheme);
+
+    }
 }
 
 function attachListeners() {
