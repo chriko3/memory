@@ -5,8 +5,27 @@ let settingsplayer = sessionStorage.getItem("player");
 let settingssize = sessionStorage.getItem("size");
 
 let body = document.getElementById("body");
+let exitIcon = document.getElementById("exitIcon") as HTMLImageElement;
+let gamePointsPlayer1 = document.getElementById("gamePointsPlayer1") as HTMLImageElement;
+let gamePointsPlayer2 = document.getElementById("gamePointsPlayer2") as HTMLImageElement;
 
-const game = document.querySelector(".game") as HTMLElement;
+let pointsPlayer1 = document.getElementById('pointsPlayer1') as HTMLElement;
+let pointsPlayer2 = document.getElementById('pointsPlayer2') as HTMLElement;
+
+let pointsPlayer1GameOver = document.getElementById('pointsPlayer1GameOver');
+let pointsPlayer2GameOver = document.getElementById('pointsPlayer2GameOver');
+
+let currentPlayerImg = document.getElementById("currentPlayer") as HTMLImageElement;
+let currentPlayerThemeVibeCode: string[] = [
+    '../public/assets/img/blue.svg',
+    '../public/assets/img/orange.svg'
+]
+
+let currentPlayerThemeFood: string[] = [
+    '../public/assets/img/chess_pawn_blue.svg',
+    '../public/assets/img/chess_pawn_orange.svg'
+]
+let game = document.querySelector(".game") as HTMLElement;
 game.style.gridTemplateColumns = "repeat(4, 120px)";
 
 let flippedCards: HTMLElement[] = [];
@@ -24,16 +43,31 @@ function gameInit() {
         setThemeCodeVibe();
     }
     else {
-        body!.classList.add("theme-food");
+        setThemeFood();
     }
 
     setBoard();
+    updateCurrentPlayerUI();
     loadCardTheme();
 }
 (window as any).gameInit = gameInit;
 
 function setThemeCodeVibe() {
     body!.classList.add("theme-codevibe");
+    gamePointsPlayer1!.src = currentPlayerThemeVibeCode[0];
+    gamePointsPlayer2!.src = currentPlayerThemeVibeCode[1];
+    pointsPlayer1.style.color = "rgba(43, 177, 255, 1)";
+    pointsPlayer2.style.color = "rgba(245, 142, 57, 1)";
+
+}
+
+function setThemeFood() {
+    body!.classList.add("theme-food");
+    gamePointsPlayer1!.src = currentPlayerThemeFood[0];
+    gamePointsPlayer2!.src = currentPlayerThemeFood[1];
+    exitIcon!.src = "../public/assets/img/exit_orange.svg";
+    pointsPlayer1.style.color = "rgba(43, 177, 255, 1)";
+    pointsPlayer2.style.color = "rgba(245, 142, 57, 1)";
 }
 
 function setBoard() {
@@ -53,6 +87,8 @@ function renderCards(theme: string[]) {
     if (!gameCanvas) return;
     const cards: number[] = [];
     for (let i = 0; i < gameSettings.size! / 2; i++) {
+    // for (let i = 0; i < 4! / 2; i++) {
+
         cards.push(i);
         cards.push(i);
     }
@@ -78,9 +114,8 @@ function loadCardTheme() {
 
 function attachListeners() {
     document.querySelectorAll(".card").forEach(card => {
-
         card.addEventListener("click", () => {
-            updateCurrentPlayerUI();
+
             if (card.classList.contains("flipped")) return;
             if (card.classList.contains("matched")) return;
 
@@ -109,6 +144,7 @@ function attachListeners() {
                     card2.classList.add("matched");
                     checkWin();
                     flippedCards = [];
+                    updateCurrentPlayerUI();
                 } else {
                     setTimeout(() => {
                         card1.classList.remove("flipped");
@@ -119,7 +155,7 @@ function attachListeners() {
                             gameSettings.player = "blue";
                         }
                         flippedCards = [];
-
+                        updateCurrentPlayerUI();
                     }, 800);
                 }
             }
@@ -128,19 +164,28 @@ function attachListeners() {
 }
 
 function updatePointsUI() {
-    let pointsPlayer1 = document.getElementById('pointsPlayer1');
-    let pointsPlayer2 = document.getElementById('pointsPlayer2');
     pointsPlayer1!.innerText = String(playerPoints[0]);
     pointsPlayer2!.innerText = String(playerPoints[1]);
 
-    let pointsPlayer1GameOver = document.getElementById('pointsPlayer1GameOver');
-    let pointsPlayer2GameOver = document.getElementById('pointsPlayer2GameOver');
     pointsPlayer1GameOver!.innerText = String(playerPoints[0]);
     pointsPlayer2GameOver!.innerText = String(playerPoints[1]);
 }
 
 function updateCurrentPlayerUI() {
-
+    if (gameSettings.theme == 1) {
+        if (gameSettings.player == "blue") {
+            currentPlayerImg!.src = currentPlayerThemeVibeCode[0];
+        } else {
+            currentPlayerImg!.src = currentPlayerThemeVibeCode[1];
+        }
+    }
+    else if (gameSettings.theme == 2) {
+        if (gameSettings.player == "blue") {
+            currentPlayerImg!.src = currentPlayerThemeFood[0];
+        } else {
+            currentPlayerImg!.src = currentPlayerThemeFood[1];
+        }
+    }
 }
 
 function checkWin() {
