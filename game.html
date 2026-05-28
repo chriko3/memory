@@ -45,10 +45,38 @@
         </div>
     </div>
 
-    <script type="module" src="/src/main.ts"></script>
-    <script type="module" src="/src/settings.ts"></script>
-    <script type="module" src="/src/game.ts"></script>
-    <script type="module" src="/src/template.ts"></script>
+    <div class="overlay filled win" id="winScreen">
+        <div class="game-over-screen">
+            <div>
+                <p>The winner is</p>
+                <p>XXX Player</p>
+            </div>
+
+            <div>
+                <img src="" alt="">
+                <button></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay filled" id="gameOver" style="display: none;">
+        <div class="game-over-screen">
+            <p>Game over</p>
+            <div>
+                <p>Final score</p>
+                <div class="game-points">
+                    <img src="" alt="">
+                    <p id="pointsPlayer1GameOver">0</p>
+                    <img src="" alt="">
+                    <p id="pointsPlayer2GameOver">0</p>
+                </div>
+            </div>
+        </div>
+
+        <script type="module" src="/src/main.ts"></script>
+        <script type="module" src="/src/settings.ts"></script>
+        <script type="module" src="/src/game.ts"></script>
+        <script type="module" src="/src/template.ts"></script>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 interface GameSettings {
     theme: number | undefined;
-    player: boolean | undefined;
+    player: string | undefined;
     size: number | undefined;
 }
 
@@ -23,7 +23,7 @@ document.querySelectorAll("[data-theme]").forEach(el => {
 document.querySelectorAll("[data-player]").forEach(el => {
     el.addEventListener("click", () => {
         const target = el as HTMLElement;
-        settings.player = target.dataset.player === "blue";
+        settings.player = String(target.dataset.player) as "blue" | "orange";
         document.querySelectorAll("[data-player]").forEach(x => x.classList.remove("active"));
         target.classList.add("active");
         updateUIPlayer();
@@ -59,9 +59,9 @@ function updateUIPlayer() {
     if (settings.player == undefined) {
         gamePlayerText!.innerText = "Player";
     }
-    else if (settings.player == true) {
+    else if (settings.player == "blue") {
         gamePlayerText!.innerText = "Blue Player";
-    } else if (settings.player == false) {
+    } else if (settings.player == "orange") {
         gamePlayerText!.innerText = "Orange Player";
     }
 }

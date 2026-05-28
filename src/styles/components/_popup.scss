@@ -1,19 +1,33 @@
 @use '../abstracts/mixins';
 
 .overlay {
-
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6);
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     z-index: 999;
+
+    &.filled {
+        background-color: rgb(25, 150, 44);
+
+        &.win {
+            >div {
+                >div {
+                    p {
+                        margin: 0px;
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 .exit-popup {

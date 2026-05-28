@@ -13,11 +13,13 @@ let playerPoints: number[] = [0, 0];
 
 let gameSettings: GameSettings = {
     theme: Number(settingstheme),
-    player: settingsplayer === "true",
+    player: String(settingsplayer),
     size: Number(settingssize)
 };
 
 function gameInit() {
+    console.log(gameSettings.player);
+
     setBoard();
     renderCards();
 }
@@ -40,7 +42,7 @@ function renderCards() {
     const gameCanvas = document.getElementById("gameCanvas");
     if (!gameCanvas) return;
     const cards: number[] = [];
-    for (let i = 0; i < gameSettings.size! / 2; i++) {
+    for (let i = 0; i < 4! / 2; i++) {
         cards.push(i);
         cards.push(i);
     }
@@ -77,7 +79,7 @@ function attachListeners() {
                 const pair2 = card2.getAttribute("data-pair");
 
                 if (pair1 === pair2) {
-                    if (gameSettings.player) {
+                    if (gameSettings.player == "blue") {
                         playerPoints[0] += 1;
                     }
                     else {
@@ -86,18 +88,22 @@ function attachListeners() {
                     updatePointsUI();
                     card1.classList.add("matched");
                     card2.classList.add("matched");
+                    checkWin();
                     flippedCards = [];
                 } else {
                     setTimeout(() => {
                         card1.classList.remove("flipped");
                         card2.classList.remove("flipped");
-                        gameSettings.player = !gameSettings.player;
+                        if (gameSettings.player === "blue") {
+                            gameSettings.player = "orange";
+                        } else {
+                            gameSettings.player = "blue";
+                        }
                         flippedCards = [];
 
                     }, 800);
                 }
             }
-            checkWin();
         });
     });
 }
@@ -107,6 +113,11 @@ function updatePointsUI() {
     let pointsPlayer2 = document.getElementById('pointsPlayer2');
     pointsPlayer1!.innerText = String(playerPoints[0]);
     pointsPlayer2!.innerText = String(playerPoints[1]);
+
+    let pointsPlayer1GameOver = document.getElementById('pointsPlayer1GameOver');
+    let pointsPlayer2GameOver = document.getElementById('pointsPlayer2GameOver');
+    pointsPlayer1GameOver!.innerText = String(playerPoints[0]);
+    pointsPlayer2GameOver!.innerText = String(playerPoints[1]);
 }
 
 function updateCurrentPlayerUI() {
@@ -129,13 +140,30 @@ function checkWin() {
         }
         else {
             console.log('p2 won');
-            showEndScreen(2);
+            showEndScreen(1);
         }
     }
 }
 
 function showEndScreen(winState: number) {
-
+    setTimeout(() => {
+        const gameOver = document.getElementById("gameOver") as HTMLElement;
+        const winScreen = document.getElementById("winScreen") as HTMLElement;
+        gameOver.style.display = "flex";
+        setTimeout(() => {
+            gameOver.style.display = "none";
+            winScreen.style.display = "flex";
+            if (winState === 0) {
+                console.log("Player 1 won");
+            }
+            else if (winState === 1) {
+                console.log("Player 2 won");
+            }
+            else {
+                console.log("Draw");
+            }
+        }, 3000);
+    }, 800);
 }
 
 function setGrid(cards: number) {

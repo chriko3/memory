@@ -1,0 +1,23 @@
+@use '../abstracts/mixins';
+
+.game-over-screen {
+    >p {
+        font-size: 124px;
+    }
+
+    >div {
+        @include mixins.flex(flex, center, center, column);
+
+        >p {
+            font-size: 26px;
+        }
+
+        >div {
+            @include mixins.flex(flex, space-around, center, row);
+
+            width: 222px;
+            height: 66px;
+            background-color: azure;
+        }
+    }
+}
