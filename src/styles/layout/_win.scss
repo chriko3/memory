@@ -1,0 +1,27 @@
+@use '../abstracts/mixins';
+
+.win {
+    @include mixins.flex(flex, center, center, column);
+    text-align: center;
+
+    >p {
+        font-size: 40px;
+        margin-top: 0px;
+    }
+
+    >p:last-child {
+        font-size: 60px;
+    }
+
+    >img {
+        width: 200px;
+        height: 250px;
+        margin-bottom: 50px;
+    }
+
+    >button {
+        @include mixins.flex(flex, center, center, none);
+        width: 204px;
+        height: 62px;
+    }
+}

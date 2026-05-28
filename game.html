@@ -45,23 +45,18 @@
         </div>
     </div>
 
-    <div class="overlay filled win" id="winScreen">
-        <div class="game-over-screen">
-            <div>
-                <p>The winner is</p>
-                <p>XXX Player</p>
-            </div>
-
-            <div>
-                <img src="" alt="">
-                <button></button>
-            </div>
+    <div class="overlay filled win" id="winScreen" style="display: none;">
+        <div class="win">
+            <p id="infoText">The winner is</p>
+            <p id="playerWinnerText">XXX Player</p>
+            <img src="" alt="">
+            <button onclick="exitGame()">Back to start</button>
         </div>
     </div>
 
     <div class="overlay filled" id="gameOver" style="display: none;">
         <div class="game-over-screen">
-            <p>Game over</p>
+            <p>GAME IS OVER</p>
             <div>
                 <p>Final score</p>
                 <div class="game-points">

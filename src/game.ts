@@ -37,12 +37,11 @@ function setBoard() {
     }
 }
 
-
 function renderCards() {
     const gameCanvas = document.getElementById("gameCanvas");
     if (!gameCanvas) return;
     const cards: number[] = [];
-    for (let i = 0; i < 4! / 2; i++) {
+    for (let i = 0; i < gameSettings.size! / 2; i++) {
         cards.push(i);
         cards.push(i);
     }
@@ -131,15 +130,12 @@ function checkWin() {
     );
     if (allMatched) {
         if (playerPoints[0] > playerPoints[1]) {
-            console.log('p1 won');
             showEndScreen(0);
         }
         else if (playerPoints[0] === playerPoints[1]) {
-            console.log("draw");
             showEndScreen(2);
         }
         else {
-            console.log('p2 won');
             showEndScreen(1);
         }
     }
@@ -147,22 +143,29 @@ function checkWin() {
 
 function showEndScreen(winState: number) {
     setTimeout(() => {
-        const gameOver = document.getElementById("gameOver") as HTMLElement;
-        const winScreen = document.getElementById("winScreen") as HTMLElement;
+        let gameOver = document.getElementById("gameOver") as HTMLElement;
+        let winScreen = document.getElementById("winScreen") as HTMLElement;
+        let infoText = document.getElementById("infoText");
+        let playerWinnerText = document.getElementById("playerWinnerText");
+
         gameOver.style.display = "flex";
         setTimeout(() => {
             gameOver.style.display = "none";
             winScreen.style.display = "flex";
             if (winState === 0) {
                 console.log("Player 1 won");
+                playerWinnerText!.innerText = "Player 1";
             }
             else if (winState === 1) {
                 console.log("Player 2 won");
+                playerWinnerText!.innerText = "Player 2";
             }
             else {
                 console.log("Draw");
+                infoText!.innerText = "It's a";
+                playerWinnerText!.innerText = "DRAW";
             }
-        }, 3000);
+        }, 2500);
     }, 800);
 }
 
