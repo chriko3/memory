@@ -1,3 +1,7 @@
+/**
+ * creates html for a card
+ * uses cardValue, img and theme to build the card
+ */
 function returnCardTemplate(cardValue: number, img: string, theme: string[]) {
     return `
         <div class="card" data-pair="${cardValue}">
