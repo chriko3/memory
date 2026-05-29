@@ -2,14 +2,17 @@
 
 .game-over-screen {
     >p {
-        font-size: 124px;
+        font-size: var(--font-size-150);
+        color: var(--background-color-button);
     }
 
     >div {
         @include mixins.flex(flex, center, center, column);
 
         >p {
-            font-size: 26px;
+            font-size: var(--font-size-24);
+            color: var(--text-color);
+
         }
 
         >div {
@@ -17,7 +20,8 @@
 
             width: 222px;
             height: 66px;
-            background-color: azure;
+            background-color: var(--background-color-banner);
+            border-style: none;
         }
     }
 }

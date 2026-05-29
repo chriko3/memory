@@ -12,10 +12,11 @@
     <div class="game-container">
         <div class="game-info-container">
             <div class="game-points">
-                <img id="gamePointsPlayer1" src="" alt="">
-                <p id="pointsPlayer1">0</p>
-                <img id="gamePointsPlayer2" src="" alt="">
-                <p id="pointsPlayer2">0</p>
+                <img class="player1Img" src="" alt="">
+                <p class="player1Points">0</p>
+
+                <img class="player2Img" src="" alt="">
+                <p class="player2Points">0</p>
             </div>
 
             <div class="game-current-player">
@@ -49,7 +50,7 @@
         <div class="win">
             <p id="infoText">The winner is</p>
             <p id="playerWinnerText">XXX Player</p>
-            <img src="" alt="">
+            <img id="winImg" src="" alt="">
             <button onclick="exitGame()">Back to start</button>
         </div>
     </div>
@@ -60,18 +61,20 @@
             <div>
                 <p>Final score</p>
                 <div class="game-points">
-                    <img src="" alt="">
-                    <p id="pointsPlayer1GameOver">0</p>
-                    <img src="" alt="">
-                    <p id="pointsPlayer2GameOver">0</p>
+                    <img class="player1Img" src="" alt="">
+                    <p class="player1Points">0</p>
+
+                    <img class="player2Img" src="" alt="">
+                    <p class="player2Points">0</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script type="module" src="/src/main.ts"></script>
-        <script type="module" src="/src/settings.ts"></script>
-        <script type="module" src="/src/game.ts"></script>
-        <script type="module" src="/src/template.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/settings.ts"></script>
+    <script type="module" src="/src/game.ts"></script>
+    <script type="module" src="/src/template.ts"></script>
 </body>
 
 </html>

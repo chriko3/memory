@@ -5,23 +5,36 @@
     text-align: center;
 
     >p {
-        font-size: 40px;
+        font-size: var(--font-size-32);
+        color: var(--text-color);
         margin-top: 0px;
     }
 
-    >p:last-child {
-        font-size: 60px;
+    >p:last-of-type {
+        font-size: var(--font-size-110);
+        margin-bottom: 20px;
     }
 
     >img {
         width: 200px;
         height: 250px;
         margin-bottom: 50px;
+        background-color: var(--win-screen-player-bg);
+        padding: 20px;
+        border-radius: var(--game-button-border-radius); 
     }
 
     >button {
         @include mixins.flex(flex, center, center, none);
         width: 204px;
         height: 62px;
+        background-color: var(--game-button-color);
+        border-color: var(--game-button-border-color);
+        border-style: var(--game-button-border-style);
+        border-width: var(--game-button-border-width);
+        border-radius: var(--game-button-border-radius);
+        color: var(--text-color);
+        font-size: var(--font-size-24);
+        font-family: var(--font-main);
     }
 }

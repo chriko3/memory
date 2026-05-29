@@ -6,24 +6,26 @@ let settingssize = sessionStorage.getItem("size");
 
 let body = document.getElementById("body");
 let exitIcon = document.getElementById("exitIcon") as HTMLImageElement;
-let gamePointsPlayer1 = document.getElementById("gamePointsPlayer1") as HTMLImageElement;
-let gamePointsPlayer2 = document.getElementById("gamePointsPlayer2") as HTMLImageElement;
+let winImg = document.getElementById("winImg") as HTMLImageElement;
 
-let pointsPlayer1 = document.getElementById('pointsPlayer1') as HTMLElement;
-let pointsPlayer2 = document.getElementById('pointsPlayer2') as HTMLElement;
 
-let pointsPlayer1GameOver = document.getElementById('pointsPlayer1GameOver');
-let pointsPlayer2GameOver = document.getElementById('pointsPlayer2GameOver');
+const player1Imgs = document.querySelectorAll<HTMLImageElement>(".player1Img");
+const player2Imgs = document.querySelectorAll<HTMLImageElement>(".player2Img");
+
+const player1Points = document.querySelectorAll<HTMLElement>(".player1Points");
+const player2Points = document.querySelectorAll<HTMLElement>(".player2Points");
 
 let currentPlayerImg = document.getElementById("currentPlayer") as HTMLImageElement;
 let currentPlayerThemeVibeCode: string[] = [
     '../public/assets/img/blue.svg',
-    '../public/assets/img/orange.svg'
+    '../public/assets/img/orange.svg',
+    '../public/assets/img/draw_cv.svg'
 ]
 
 let currentPlayerThemeFood: string[] = [
     '../public/assets/img/chess_pawn_blue.svg',
-    '../public/assets/img/chess_pawn_orange.svg'
+    '../public/assets/img/chess_pawn_orange.svg',
+    '../public/assets/img/draw_food.svg'
 ]
 let game = document.querySelector(".game") as HTMLElement;
 game.style.gridTemplateColumns = "repeat(4, 120px)";
@@ -39,7 +41,7 @@ let gameSettings: GameSettings = {
 };
 
 function gameInit() {
-    if (gameSettings.theme == 1) {
+    if (checkCurrentTheme() == 1) {
         setThemeCodeVibe();
     }
     else {
@@ -48,26 +50,42 @@ function gameInit() {
 
     setBoard();
     updateCurrentPlayerUI();
+    updatePointsUI();
     loadCardTheme();
 }
 (window as any).gameInit = gameInit;
 
+function checkCurrentTheme() {
+    if (gameSettings.theme == 1) {
+        return 1;
+    }
+    else {
+        return 2;
+    }
+}
+
 function setThemeCodeVibe() {
     body!.classList.add("theme-codevibe");
-    gamePointsPlayer1!.src = currentPlayerThemeVibeCode[0];
-    gamePointsPlayer2!.src = currentPlayerThemeVibeCode[1];
-    pointsPlayer1.style.color = "rgba(43, 177, 255, 1)";
-    pointsPlayer2.style.color = "rgba(245, 142, 57, 1)";
+    player1Imgs.forEach(img => {
+        img.src = currentPlayerThemeVibeCode[0];
+    });
+
+    player2Imgs.forEach(img => {
+        img.src = currentPlayerThemeVibeCode[1];
+    });
 
 }
 
 function setThemeFood() {
     body!.classList.add("theme-food");
-    gamePointsPlayer1!.src = currentPlayerThemeFood[0];
-    gamePointsPlayer2!.src = currentPlayerThemeFood[1];
     exitIcon!.src = "../public/assets/img/exit_orange.svg";
-    pointsPlayer1.style.color = "rgba(43, 177, 255, 1)";
-    pointsPlayer2.style.color = "rgba(245, 142, 57, 1)";
+    player1Imgs.forEach(img => {
+        img.src = currentPlayerThemeFood[0];
+    });
+
+    player2Imgs.forEach(img => {
+        img.src = currentPlayerThemeFood[1];
+    });
 }
 
 function setBoard() {
@@ -86,8 +104,8 @@ function renderCards(theme: string[]) {
     const gameCanvas = document.getElementById("gameCanvas");
     if (!gameCanvas) return;
     const cards: number[] = [];
-    for (let i = 0; i < gameSettings.size! / 2; i++) {
-    // for (let i = 0; i < 4! / 2; i++) {
+    // for (let i = 0; i < gameSettings.size! / 2; i++) {
+    for (let i = 0; i < 4! / 2; i++) {
 
         cards.push(i);
         cards.push(i);
@@ -103,12 +121,11 @@ function renderCards(theme: string[]) {
 }
 
 function loadCardTheme() {
-    if (gameSettings.theme == 1) {
+    if (checkCurrentTheme() == 1) {
         renderCards(codeVibeTheme);
     }
-    else if (gameSettings.theme == 2) {
+    else {
         renderCards(foodTheme);
-
     }
 }
 
@@ -164,15 +181,19 @@ function attachListeners() {
 }
 
 function updatePointsUI() {
-    pointsPlayer1!.innerText = String(playerPoints[0]);
-    pointsPlayer2!.innerText = String(playerPoints[1]);
+    player1Points.forEach(point => {
+        point.innerText = String(playerPoints[0]);
+        point.style.color = "rgba(43, 177, 255, 1)";
+    });
 
-    pointsPlayer1GameOver!.innerText = String(playerPoints[0]);
-    pointsPlayer2GameOver!.innerText = String(playerPoints[1]);
+    player2Points.forEach(point => {
+        point.innerText = String(playerPoints[1]);
+        point.style.color = "rgba(245, 142, 57, 1)";
+    });
 }
 
 function updateCurrentPlayerUI() {
-    if (gameSettings.theme == 1) {
+    if (checkCurrentTheme() == 1) {
         if (gameSettings.player == "blue") {
             currentPlayerImg!.src = currentPlayerThemeVibeCode[0];
         } else {
@@ -218,17 +239,27 @@ function showEndScreen(winState: number) {
             gameOver.style.display = "none";
             winScreen.style.display = "flex";
             if (winState === 0) {
-                console.log("Player 1 won");
-                playerWinnerText!.innerText = "Player 1";
+                playerWinnerText!.innerHTML = "BLUE <br> PLAYER";
+                playerWinnerText!.style.color = "rgba(43, 177, 255, 1)";
+                winImg!.src = currentPlayerThemeFood[0];
             }
             else if (winState === 1) {
-                console.log("Player 2 won");
-                playerWinnerText!.innerText = "Player 2";
+                playerWinnerText!.innerHTML = "ORANGE <br> PLAYER";
+                playerWinnerText!.style.color = "rgba(245, 142, 57, 1)";
+                winImg!.src = currentPlayerThemeFood[1];
             }
             else {
                 console.log("Draw");
                 infoText!.innerText = "It's a";
                 playerWinnerText!.innerText = "DRAW";
+                if (checkCurrentTheme() == 1) {
+                    winImg!.src = currentPlayerThemeVibeCode[2];
+                    playerWinnerText!.style.color = "rgba(77, 213, 188, 1)";
+                }
+                else {
+                    winImg!.src = currentPlayerThemeFood[2];
+                    playerWinnerText!.style.color = "rgba(243, 131, 45, 1)";
+                }
             }
         }, 2500);
     }, 800);
