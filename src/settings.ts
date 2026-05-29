@@ -124,7 +124,7 @@ function startGame() {
         sessionStorage.setItem("theme", String(settings.theme));
         sessionStorage.setItem("player", String(settings.player));
         sessionStorage.setItem("size", String(settings.size));
-        window.location.href = "game.html";
+        window.location.href = "../game.html";
     }
 }
 (window as any).startGame = startGame;

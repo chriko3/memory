@@ -5,9 +5,17 @@ document.addEventListener("contextmenu", e => e.preventDefault());
  * exits the game and returns to start page
  */
 function exitGame() {
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
 }
 (window as any).exitGame = exitGame;
+
+/**
+ * open the settings page
+ */
+function openSettings() {
+    window.location.href = "../settings.html";
+}
+(window as any).openSettings = openSettings;
 
 /**
  * toggles exit popup visibility
